@@ -18,7 +18,7 @@ function KanbanBoard() {
               </h2>
               <span
                 className="text-sm font-medium text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full"
-              >3</span
+              > 3 </span
               >
             </div>
 
