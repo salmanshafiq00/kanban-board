@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import VerticalEllipsisSvg from '../svgs/VerticalEllipsisSvg';
-import { useState } from 'react';
+import { TaskContext } from '../../context/TaskContext';
 
-function CardActionMenu() {
+function CardActionMenu({ task }) {
     const [showActionMenu, setShowActionMenu] = useState(false);
+    const { openEditModal, deleteTask } = useContext(TaskContext);
+
+    const handleEdit = () => {
+        openEditModal(task);
+        setShowActionMenu(false);
+    };
+
+    const handleDelete = () => {
+        deleteTask(task.id);
+        setShowActionMenu(false);
+    };
 
     return (
         <div
@@ -48,12 +59,14 @@ function CardActionMenu() {
                         >
                             <button
                                 type="button"
+                                onClick={handleEdit}
                                 className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
                             >
                                 Edit Card
                             </button>
                             <button
                                 type="button"
+                                onClick={handleDelete}
                                 className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 cursor-pointer"
                             >
                                 Delete Card

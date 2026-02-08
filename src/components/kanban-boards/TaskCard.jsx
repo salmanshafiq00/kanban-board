@@ -10,7 +10,7 @@ function TaskCard({ task }) {
             data-card="wireframes"
             data-column="todo"
         >
-            <CardActionMenu />
+            <CardActionMenu task={task} />
             <div className="mb-3">
                 <h3
                     className="font-semibold text-gray-900 text-sm"
