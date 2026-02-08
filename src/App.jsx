@@ -4,6 +4,7 @@ import KanbanBoard from './components/kanban-boards/KanbanBoard'
 import TaskModal from './components/kanban-boards/TaskModal'
 import Header from './Header'
 import Sidebar from './Sidebar'
+import { getAllTasks } from './data/tasks'
 
 const defaultTask = {
   id: crypto.randomUUID(),
@@ -12,11 +13,13 @@ const defaultTask = {
   tag: 'design',
   date: '',
   status: 'todo',
+  createdAt: new Date()
 };
 
 function App() {
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [task, setTask] = useState(defaultTask);
+  const [tasks, setTasks] = useState(getAllTasks());
 
 
   const handleSubmit = (newTask) => {
@@ -34,7 +37,7 @@ function App() {
           <main className="flex-1 flex flex-col min-h-0">
             <Header onShowModal={() => setShowTaskModal(true)} />
 
-            <KanbanBoard />
+            <KanbanBoard tasks={tasks} />
             {
               showTaskModal &&
               <TaskModal
