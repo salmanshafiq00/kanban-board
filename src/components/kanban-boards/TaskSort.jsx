@@ -23,19 +23,19 @@ function TaskSort() {
                         data-menu
                     >
                         <p
-                            className="px-4 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider"
+                            className="px-4 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider cursor-pointer"
                         >
                             Sort by date
                         </p>
                         <button
                             type="button"
-                            className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                            className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
                         >
                             Newest first
                         </button>
                         <button
                             type="button"
-                            className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                            className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
                         >
                             Oldest first
                         </button>

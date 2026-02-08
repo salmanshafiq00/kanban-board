@@ -33,13 +33,13 @@ function CardActionMenu() {
                         </p>
                         <button
                             type="button"
-                            className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                            className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
                         >
                             In Progress
                         </button>
                         <button
                             type="button"
-                            className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                            className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
                         >
                             Done
                         </button>
@@ -48,13 +48,13 @@ function CardActionMenu() {
                         >
                             <button
                                 type="button"
-                                className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                                className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
                             >
                                 Edit Card
                             </button>
                             <button
                                 type="button"
-                                className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50"
+                                className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 cursor-pointer"
                             >
                                 Delete Card
                             </button>

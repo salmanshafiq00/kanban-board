@@ -24,6 +24,7 @@ function App() {
 
   const handleSubmit = (newTask) => {
     console.log('Task submitted from App:', newTask);
+    setTasks(prevTasks => [...prevTasks, newTask]);
     setShowTaskModal(false); // Close the modal after submission
   };
 
