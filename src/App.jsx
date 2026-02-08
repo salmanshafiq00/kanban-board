@@ -5,8 +5,24 @@ import TaskModal from './components/kanban-boards/TaskModal'
 import Header from './Header'
 import Sidebar from './Sidebar'
 
+const defaultTask = {
+  id: crypto.randomUUID(),
+  title: '',
+  description: '',
+  tag: 'design',
+  date: '',
+  status: 'todo',
+};
+
 function App() {
   const [showTaskModal, setShowTaskModal] = useState(false);
+  const [task, setTask] = useState(defaultTask);
+
+
+  const handleSubmit = (newTask) => {
+    console.log('Task submitted from App:', newTask);
+    setShowTaskModal(false); // Close the modal after submission
+  };
 
   return (
     <>
@@ -19,7 +35,14 @@ function App() {
             <Header onShowModal={() => setShowTaskModal(true)} />
 
             <KanbanBoard />
-            {showTaskModal && <TaskModal onClose={() => setShowTaskModal(false)} />}
+            {
+              showTaskModal &&
+              <TaskModal
+                task={task}
+                setTask={setTask}
+                onSubmit={handleSubmit}
+                onClose={() => setShowTaskModal(false)} />
+            }
           </main>
         </div>
       </div>

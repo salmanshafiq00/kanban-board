@@ -1,6 +1,10 @@
 
+function TaskModal({ task, setTask, onSubmit, onClose }) {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setTask((prev) => ({ ...prev, [name]: value }));
+  };
 
-function TaskModal({ onClose }) {
   return (
     <div className="task-modal fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
       <div className="w-full max-w-3xl">
@@ -22,7 +26,12 @@ function TaskModal({ onClose }) {
             </p>
           </div>
 
-          <form className="space-y-8">
+          <form
+            className="space-y-8"
+            onSubmit={(e) => {
+              e.preventDefault();
+              onSubmit(task);
+            }}>
             <div className="grid grid-cols-1 gap-6">
               <div>
                 <label
@@ -34,6 +43,8 @@ function TaskModal({ onClose }) {
                   type="text"
                   id="title"
                   name="title"
+                  value={task.title}
+                  onChange={handleChange}
                   placeholder="e.g. Wireframes"
                   className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-900 focus:outline-none"
                   required
@@ -49,6 +60,8 @@ function TaskModal({ onClose }) {
                 <input
                   id="description"
                   name="description"
+                  value={task.description}
+                  onChange={handleChange}
                   placeholder="Add context or acceptance criteria"
                   className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-900 focus:outline-none"
                 />
@@ -65,6 +78,8 @@ function TaskModal({ onClose }) {
                 <select
                   id="tag"
                   name="tag"
+                  value={task.tag}
+                  onChange={handleChange}
                   className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none"
                 >
                   <option value="design">Design</option>
@@ -93,6 +108,8 @@ function TaskModal({ onClose }) {
                   type="date"
                   id="date"
                   name="date"
+                  value={task.date}
+                  onChange={handleChange}
                   className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none"
                 />
               </div>
@@ -106,6 +123,8 @@ function TaskModal({ onClose }) {
                 <select
                   id="status"
                   name="status"
+                  value={task.status}
+                  onChange={handleChange}
                   className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none"
                 >
                   <option value="todo">To-do</option>
