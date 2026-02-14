@@ -1,8 +1,22 @@
+import { getTagConfig, getAllTags } from '../../data/tags';
 
 function TaskModal({ task, setTask, onSubmit, onClose }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setTask((prev) => ({ ...prev, [name]: value }));
+    
+    if (name === 'tag') {
+      const tagData = getTagConfig(value);
+      setTask((prev) => ({
+        ...prev,
+        [name]: value,
+        tagColor: {
+          bgColor: tagData.bgColor,
+          textColor: tagData.textColor,
+        },
+      }));
+    } else {
+      setTask((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   return (
@@ -82,19 +96,12 @@ function TaskModal({ task, setTask, onSubmit, onClose }) {
                   onChange={handleChange}
                   className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none"
                 >
-                  <option value="design">Design</option>
-                  <option value="operations">Operations</option>
-                  <option value="marketing">Marketing</option>
-                  <option value="creative">Creative</option>
-                  <option value="development">Development</option>
-                  <option value="backend">Backend</option>
-                  <option value="setup">Setup</option>
-                  <option value="infrastructure">
-                    Infrastructure
-                  </option>
-                  <option value="documentation">
-                    Documentation
-                  </option>
+                  <option value="">Select a tag</option>
+                  {getAllTags().map((tag) => (
+                    <option key={tag.value} value={tag.value}>
+                      {tag.label}
+                    </option>
+                  ))}
                 </select>
               </div>
 

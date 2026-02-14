@@ -1,52 +1,48 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import './App.css'
 import KanbanBoard from './components/kanban-boards/KanbanBoard'
 import TaskModal from './components/kanban-boards/TaskModal'
 import Header from './Header'
 import Sidebar from './Sidebar'
+import { TaskProvider, TaskContext } from './context/TaskContext'
 
-const defaultTask = {
-  id: crypto.randomUUID(),
-  title: '',
-  description: '',
-  tag: 'design',
-  date: '',
-  status: 'todo',
-};
+function AppContent() {
+  const { showTaskModal, editingTask, submitTask, closeModal, openAddModal } = useContext(TaskContext);
+  const [task, setTask] = useState(null);
 
-function App() {
-  const [showTaskModal, setShowTaskModal] = useState(false);
-  const [task, setTask] = useState(defaultTask);
-
-
-  const handleSubmit = (newTask) => {
-    console.log('Task submitted from App:', newTask);
-    setShowTaskModal(false); // Close the modal after submission
-  };
+  const currentTask = task || editingTask;
 
   return (
     <>
-
       <div className="bg-gray-50">
         <div className="min-h-screen flex flex-col lg:flex-row">
           <Sidebar />
 
           <main className="flex-1 flex flex-col min-h-0">
-            <Header onShowModal={() => setShowTaskModal(true)} />
+            <Header onShowModal={openAddModal} />
 
             <KanbanBoard />
             {
               showTaskModal &&
               <TaskModal
-                task={task}
+                task={currentTask}
                 setTask={setTask}
-                onSubmit={handleSubmit}
-                onClose={() => setShowTaskModal(false)} />
+                onSubmit={submitTask}
+                onClose={closeModal}
+              />
             }
           </main>
         </div>
       </div>
     </>
+  )
+}
+
+function App() {
+  return (
+    <TaskProvider>
+      <AppContent />
+    </TaskProvider>
   )
 }
 
